@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study Gym Opportunity</title>
+    <style>
+        /* CSS for stylising */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background: #ddd;
+        }
+
+        .navbar {
+            background: #8B2F2F;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+        }
+
+        .logo {
+            width: 50px; 
+            height: 50px;
+            object-fit: contain;
+            border-radius: 5px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+        }
+
+        .dropdown-btn {
+            background: none;
+            border: none;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);   
+            min-width: 120px;
+            top: 35px;
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            display: block;
+            padding: 10px;
+            text-decoration: none;
+            color: black;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .dropdown-content a:hover {
+            background: #f0f0f0;
+        }
+
+        /* dropdown config */
+        .dropdown.show .dropdown-content {
+            display: block;
+        }
+
+        .search-bar {
+            padding: 5px;
+            font-size: 16px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .icons a {
+            color: white;
+            font-size: 24px;
+            text-decoration: none;
+        }
+
+        .content {
+            min-height: calc(100vh - 80px);
+            background: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .title {
+            font-size: 28px;
+            font-weight: bold;
+            color: black;
+            background: none;
+            display: inline-block;
+            padding: 10px 15px;
+        }
+
+        .feature-container {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-top: 40px;
+            flex-grow: 1;
+        }
+
+        .feature-container img {
+            width: 35%;
+            max-height: 500px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .feature-text-container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .feature-title {
+            font-size: 24px;
+            font-weight: bold;
+            background: white;
+            padding: 5px 10px;
+            display: inline-block;
+        }
+
+        .feature-text {
+            background: white;
+            padding: 20px;
+            border-left: 5px solid black;
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .quote {
+            font-size: 50px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar time! -->
+    <div class="navbar">
+        <img src="image.png" alt="Logo" class="logo">
+
+        <div class="nav-links">
+            <div class="dropdown">
+                <button class="dropdown-btn">Subjects ▼</button>
+                <div class="dropdown-content">
+                    <a href="#">Math</a>
+                    <a href="#">Science</a>
+                    <a href="#">English</a>
+                </div>
+            </div>
+
+            <div class="dropdown">
+                <button class="dropdown-btn">Teachers ▼</button>
+                <div class="dropdown-content">
+                    <a href="#">Mrs. Thompson</a>
+                    <a href="#">Mr. Smith</a>
+                    <a href="#">Ms. Brown</a>
+                </div>
+            </div>
+
+            <a href="booking.html" class="dropdown-btn">Bookings</a>
+        </div>
+
+        <input type="text" class="search-bar" placeholder="Search">
+
+        <div class="icons">
+            <a href="login.html">👤</a>
+            <a href="index.html">🏠</a>
+            <a href="settings.html">⚙️</a>           <!-- Wow, why complicate it with image sources and stuff when I can just... USE AN EMOJI, THANK YOU W3SCHOOLS :PRAYGE: also this makes the pages flick when the emojis are clicked-->
+        </div>
+    </div>
+
+    <!-- featured study gym oppo-->
+    <div class="content">
+        <span class="title">FEATURED STUDY GYM OPPORTUNITY</span>
+
+        <div class="feature-container">
+            <img src="index.png" alt="Study Gym Image">
+
+            <div class="feature-text-container">
+                <span class="feature-title">Math Methods - Mrs. Thompson</span>
+                <span class="quote">“</span>
+                <p class="feature-text">
+                    The Coastal School has given a great opportunity to students through 'Study Gym'. 
+                    This innovative system allows students to get sessions with teachers in order to achieve outstanding results.
+                    The system has seen a positive improvement in my class's academics, and it feels accomplishing to 
+                    have sessions with students and see them understand the content!
+                </p>
+                <span class="quote">”</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            // dropdowns get selected
+            const dropdowns = document.querySelectorAll(".dropdown");
+
+            dropdowns.forEach(dropdown => {
+                const button = dropdown.querySelector(".dropdown-btn");
+                const menu = dropdown.querySelector(".dropdown-content");
+
+                // toggles the menu when clicked
+                button.addEventListener("click", function (event) {
+                    event.stopPropagation(); // makes the dropdown not close down
+                    closeAllDropdowns(); // closes any other dropdowns (even though there's only two) before opening the one clicked on
+                    dropdown.classList.toggle("show");
+                });
+            });
+
+            // if clicked off, dropdown will close
+            document.addEventListener("click", function () {
+                closeAllDropdowns();
+            });
+
+            function closeAllDropdowns() {
+                dropdowns.forEach(dropdown => {
+                    dropdown.classList.remove("show");
+                });
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+BEGIN
+    CONNECT TO Database
+    SET login TO FALSE
+    WHILE login IS FALSE
+        SET username TO INPUT FROM User
+        SET password TO INPUT FROM User
+        SET hashpass TO HASH password WITH SHA256
+
+        IF username = NULL THEN
+            OUTPUT "Please Input a User ID"
+        ELSEIF password = NULL
+            OUTPUT "Please Input a Password"
+        ELSEIF username IS IN database[USERS]
+            SET storedHash TO database[USERS][username]["passwordhash"]
+            IF hashpass = storedHash then
+                OUTPUT "Login Successful"
+                SET login TO TRUE
+            ELSE
+                OUTPUT "Username/Password is incorrect"
+            ENDIF
+        ELSE
+            OUTPUT "Username/Password is incorrect"
+        ENDIF
+    ENDWHILE
+END
+

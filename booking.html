@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+
+
+        body {
+            background: #ddd;
+            padding: 20px;
+        }
+
+        .navbar {
+            background: #8B2F2F;
+            padding: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            color: white;
+        }
+
+        .navbar h1 {
+            flex-grow: 1; /*aligns with changes in size afaik */
+            text-align: center;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 10px;
+        }
+
+        .filter-container {
+            margin: 20px 0;
+            display: flex;
+            gap: 15px;
+        }
+
+        .filter-container button {
+            background: black;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .filter-container button:hover {
+            background: gray;
+        }
+
+        .cards-container {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); /* fractional parts, so like it splits up into 5 different groups */
+            gap: 20px;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /*CSS formatting for the cards becuase like it's all i know what to code lol */
+        }
+
+        .card img {
+            width: 100px;
+            height: 100px;
+            background: gray; /* I hate american spelling */
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="logo"><img src="image.png" alt="Logo"></div> <!--Wow, image sourcing!-->
+        <h1>BOOKINGS</h1>
+        <div class="icons"> 
+            <a href="welcome.php">🏠</a> <!-- Wow, why complicate it with image sources and stuff when I can just... USE AN EMOJI, THANK YOU W3SCHOOLS :PRAYGE: also this makes the pages flick when the emojis are clicked-->
+            <a href="settings.php">⚙️</a>
+        </div>
+    </div>
+
+    <div class="filter-container">
+        <button onclick="filterSubjects('all')">All</button>
+        <button onclick="filterSubjects('monday')">Monday</button>
+        <button onclick="filterSubjects('tuesday')">Tuesday</button>
+        <button onclick="filterSubjects('wednesday')">Wednesday</button>
+        <button onclick="filterSubjects('thursday')">Thursday</button>
+        <button onclick="filterSubjects('friday')">Friday</button>
+    </div>
+
+    <div class="cards-container" id="subjectsContainer"></div>
+
+    <script>
+        const subjects = {
+            all: ["Mathematical Methods", "General Mathematics", "English", "Literature", "Literature Extension", "German", "Japanese", "Chemistry", "Physics", "Modern History"],
+            monday: ["Mathematical Methods", "English", "Chemistry", "Physics", "German"], /* Differentiating the subjcets and stuff */
+            tuesday: ["General Mathematics", "Literature", "Modern History", "Japanese", "Physics"],
+            wednesday: ["English", "Literature Extension", "Mathematical Methods", "General Mathematics", "Modern History"],
+            thursday: ["Literature", "Physics", "Japanese", "Chemistry", "English"],
+            friday: ["German", "Literature Extension", "Modern History", "Mathematical Methods", "General Mathematics"]
+        };
+
+        function displaySubjects(day) {
+            const container = document.getElementById("subjectsContainer");
+            container.innerHTML = "";
+            subjects[day].forEach(subject => {
+                const card = document.createElement("div");
+                card.className = "card";
+                card.innerHTML = `<img src="image.png" alt="Subject"><p>${subject}</p>`; 
+                container.appendChild(card);
+            });
+        }
+
+        function filterSubjects(day) {
+            displaySubjects(day); 
+        }
+
+        
+        displaySubjects("all"); /* so that the all the subjects are loaded initially */
+    </script>
+</body>
+</html>
